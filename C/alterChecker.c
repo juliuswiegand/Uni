@@ -3,9 +3,9 @@
 int main() {
     int alter;
     printf("Gib dein Alter ein: ");
-    scanf("%d", &alter);
+    scanf("%i", &alter);
 
-    if (alter < 18 && alter > 0)
+    if (alter < 18 && alter >= 0)
     {
         printf("Du bist ein Kind.");
     } else if (alter >= 18 && alter < 67)

@@ -4,8 +4,11 @@ int main()
 {
     // Variablen deklarieren
     float preis;
-    float eingeworfen;
+    float eingeworfen = 0;
     int sorte;
+    int anzahl;
+
+    printf("\n-------------AUSWAHL-------------\n");
 
     // Auswahl der Getraenke
     printf("Waehlen Sie Ihr Getraenk aus:\n");
@@ -18,35 +21,46 @@ int main()
     // den zu zahlenden Betrag festlegen per switch
     switch (sorte)
     {
-    case 1:
-        preis = 0.5;
-        break;
-    case 2:
-        preis = 1;
-        break;
-    case 3:
-        preis = 2;
-        break;
-    default:
-    printf("Das Getraenk haben wir nicht");
-        break;
-    }
-    
-    // Aufforderung zur Bezahlung
-    printf("Bitte zahlen Sie %.2f€: ", preis);
-
-    // ueberpruefe Geldstueck mit if-Abfrage
-    scanf("%f", &eingeworfen);
-    
-    if (eingeworfen == preis)
-    {
-        printf("Vielen Dank, bitte entnehmen Sie ihr Getränk.");
-    } else
-    {
-        printf("Bitte zahlen Sie passend.");
+        case 1:
+            preis = 0.5;
+            break;
+        case 2:
+            preis = 1;
+            break;
+        case 3:
+            preis = 2;
+            break;
+        default:
+            printf("Das Getraenk haben wir nicht");
+            break;
     }
 
-    printf("\n");
+    printf("Wie viel wollen Sie: ");
+    scanf("%i", &anzahl);
+    preis = preis * anzahl;
+
+    printf("\n\n-------------ZAHLVORGANG-------------\n");
+    
+    while (preis > 0) {
+        // Aufforderung zur Bezahlung
+        printf("Bitte zahlen Sie noch %.2f€: ", preis);
+
+        // ueberpruefe Geldstueck mit if-Abfrage
+        scanf("%f", &eingeworfen);
+        preis -= eingeworfen;
+
+        if (preis < 0) {
+            printf("Hier sind %.2f€ Rueckgeld...\n\n", preis * -1);
+        }
+    }
+
+    printf("\n\n-------------AUSGABE-------------\n");
+
+    for (int i = 1; i <= anzahl; i++) {
+        printf("Getraenk %i/%i wurde ausgegeben.\n", i, anzahl);
+    }
+
+    printf("Vielen Dank, bitte entnehmen Sie die Getraenke.\n");
 
     return 0;
 }
